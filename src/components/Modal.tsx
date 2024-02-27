@@ -22,7 +22,8 @@ export default function Modal() {
         justifyContent: 'center',
         alignItems: 'center',
         fontSize: '18px',
-        fontFamily: 'Arial'
+        fontFamily: 'Arial',
+        color: 'black',
       }}>
         <div style={{
           width: '20rem',
@@ -64,7 +65,7 @@ export default function Modal() {
         marginTop: '10px',
         fontWeight: 'bold'
       }}>
-        Click Me!
+        CLICK ME
       </button>
       {modalContent}
     </>

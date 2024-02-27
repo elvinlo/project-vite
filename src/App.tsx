@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import './index.css'
 import Modal from './components/Modal.tsx'
 
 function App() {
@@ -10,6 +11,11 @@ function App() {
 
   // DONE: make components needed for TODO
   const [inputItem, setInput] = useState('');
+  const [theme, setTheme] = useState('light');
+
+  useEffect(() => {
+    document.body.setAttribute('data-theme', theme);
+  }, [theme]);
 
   const handleInputChange = (e) => {
     setInput(e.target.value);
@@ -28,22 +34,39 @@ function App() {
   };
 
   const handleDelete = (id) => {
-    // const element = document.getElementById(id);
-    // if (element?.parentNode){
-    //   element.parentNode.removeChild(element);
-    // }
     setTodos(todos.filter(todo => todo.id !== id));
   }
+
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
 
   
 
   return (
-    <div style={{ 
-      maxWidth: '800px',
-      margin: '0 auto', // centering
-      padding: '20px', // padding
-      fontFamily: 'Arial'
-    }}>
+    <div 
+      style={{ 
+        maxWidth: '800px',
+        margin: '0 auto',
+        padding: '20px',
+        fontFamily: 'Arial',
+      }}
+    >
+      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <button 
+          onClick={toggleTheme} 
+          style={{ 
+            marginBottom: '20px',
+            border: '1px solid #555',
+            borderRadius: '5px',
+            padding: '5px',
+            fontSize: '14px',
+            fontWeight: 'bold'
+        }}>
+          Toggle Theme
+        </button>
+      </div>
+
       <h1>To do</h1>
       <hr />
 
@@ -92,6 +115,7 @@ function App() {
             border: '1px solid #555',
             borderRadius: '5px',
             padding: '5px',
+            fontWeight: 'bold'
           }}
         >
           Create Task
